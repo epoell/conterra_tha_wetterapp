@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <title>ArcGIS Maps SDK for JavaScript Tutorials: Display a map</title>
+
+        <style>
+            html,
+            body,
+            #viewDiv {
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                width: 100%;
+            }
+        </style>
+
+        <link rel="stylesheet" href="https://js.arcgis.com/4.30/esri/themes/light/main.css">
+        <script src="https://js.arcgis.com/4.30/"></script>
+
+        <script>
+            require([
+                "esri/config",
+                "esri/Map",
+                "esri/views/MapView",
+                "esri/layers/FeatureLayer",
+                "esri/renderers/SimpleRenderer"
+
+            ], function(esriConfig, Map, MapView, FeatureLayer, SimpleRenderer) {
+                esriConfig.apiKey = "AAPT3NKHt6i2urmWtqOuugvr9QnADNYRrZLEtI9TxojyoCz5r4PcMxuPYrhWt3f6u1HiKANPWHr8Sf5xij1Uar62Nnz6aEcPh62zGn2SSs-apDME4g-jdMEx05l4g4C7n-cES1OZHPFLXMSFNvzb4u7iaU3HkVwGZoa13ZEY1zyolgHr_WWgKuVIulJUfZmvM7FPs2d9toSkS-Lo-gOCk2YezygsB3xntLei8GdehGkJq3E.";
+
+                const map = new Map({
+                    basemap: "gray-vector" // basemap styles service
+                });
+
+                const view = new MapView({
+                    map: map,
+                    center: [7.241, 52.452], // Longitude, latitude
+                    zoom: 13, // Zoom level
+                    container: "viewDiv" // Div element
+                });
+
+                //Style Population Size
+                const popSizeRenderer = {
+                    type: "simple", // autocasts as new SimpleRenderer()
+                    symbol: {
+                        type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+                        color: "palegreen",
+                        outline: {
+                            color: "seagreen",
+                            width: 0.5
+                        }
+                    },
+                    label: "Population size of big cities in the world", // label for the legend
+                    visualVariables: [
+                        {
+                            type: "size",
+                            field: "POP", // total population in
+                            valueExpression: null,
+                            valueUnit: "unknown",
+                            minDataValue: 100,
+                            maxDataValue: 14000000,
+                            minSize: 4, // size of marker in pts
+                            maxSize: 100 // size of marker in pts
+                        }
+                    ]
+                };
+
+                //Popoulation size Featurelayer
+                const populationSizeLayer = new FeatureLayer({
+                    url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/World_Cities/FeatureServer/",
+                    renderer: popSizeRenderer
+                });
+                map.add(populationSizeLayer);
+
+            });
+        </script>
+    </head>
+    <body>
+        <div id="viewDiv"></div>
+    </body>
+</html>
