@@ -1,0 +1,18 @@
+{
+  "name": "current-coordinates",
+  "type": "widget",
+  "version": "1.15.0",
+  "exbVersion": "1.15.0",
+  "author": "Eva Pöll",
+  "description": "Shows the current coordinates when clicking on a map",
+  "copyright": "",
+  "license": "",
+  "properties": {},
+  "translatedLocales": [
+    "en"
+  ],
+  "defaultSize": {
+    "width": 800,
+    "height": 500
+  }
+}

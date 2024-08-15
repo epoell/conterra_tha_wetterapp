@@ -25,9 +25,10 @@
                 "esri/Map",
                 "esri/views/MapView",
                 "esri/layers/FeatureLayer",
-                "esri/renderers/SimpleRenderer"
+                "esri/renderers/SimpleRenderer",
+                "esri/widgets/Locate"
 
-            ], function(esriConfig, Map, MapView, FeatureLayer, SimpleRenderer) {
+            ], function(esriConfig, Map, MapView, FeatureLayer, SimpleRenderer, Locate) {
                 esriConfig.apiKey = "AAPT3NKHt6i2urmWtqOuugvr9QnADNYRrZLEtI9TxojyoCz5r4PcMxuPYrhWt3f6u1HiKANPWHr8Sf5xij1Uar62Nnz6aEcPh62zGn2SSs-apDME4g-jdMEx05l4g4C7n-cES1OZHPFLXMSFNvzb4u7iaU3HkVwGZoa13ZEY1zyolgHr_WWgKuVIulJUfZmvM7FPs2d9toSkS-Lo-gOCk2YezygsB3xntLei8GdehGkJq3E.";
 
                 const map = new Map({
@@ -73,6 +74,14 @@
                     renderer: popSizeRenderer
                 });
                 map.add(populationSizeLayer);
+
+                //Location widget
+                const locationWidget = new Locate({
+                    view: view
+                });
+
+                // Add widget to the top right corner of the view
+                view.ui.add(locationWidget, "top-right");
 
             });
         </script>
