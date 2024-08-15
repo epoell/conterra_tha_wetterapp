@@ -3,13 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Wetter App</title>
-
-    <link rel="stylesheet" type="text/css" href="site.css">
-    <script src="site.js"></script>
 </head>
 <body>
-<h1>Title</h1>
+    <h1>THA con terra: Wetterapp</h1>
 
-<a href="basic-map.html"><button>Part 1: Basic map</button></a>
+    <p> Versuch das THA zu lösen. </p>
+
+    <h2>Stand</h2>
+
+    <p>
+    Die API von ArcGIS konnte ich einbinden und auch ein FeatureLayer
+    mit angepasstem Renderer und visualVariables erzeugen.
+    Ein eigenes Widget zur Anzeige der Koordinaten habe ich nicht schreiben können.</p>
+
+    <a href="basic-map.html"><button>Part 1: Basic map</button></a>
+
+    <h2>Verbesserungen</h2>
+    <h3>Koordinaten Widget</h3>
+
+    Es scheiterte am Ende vor allem daran, dass ich nicht genug Verständnis vom
+    vue-Framework habe, um ein Widget darin zu erzeugen. Ich wollte dem Tutorial
+    <a href="https://developers.arcgis.com/experience-builder/guide/get-map-coordinates/">Show Latitude and Longitude in Widget</a> folgen,
+    darin wird das Widget jedoch über React eingebunden, während mein Server setup ja auf vue setzt. Ich habe nicht geschafft,
+    das zu übertragen.
+    <br />
+    Eine Idee von mir war auch alternativ das <a href="https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Popup.html">Popup Widget</a>
+    zu nutzen und auf ein Click-event zu warten, um dann die Koordinaten auszulesen. Ich war jedoch nicht sicher,
+    ob ich ein Popup an einer beliebigen Kartenstelle öffnen könnte oder nur für Features im FeatureLayer.
+    <br />
+    Eines dieser Widgets würde dann das Locate-Widget ersetzen.
+
+    <h3>esriConfig.apiKey</h3>
+    Ich hatte Probleme mir ein Konto zu erstellen, um ein Developer Credential zu erzeugen.
+    Es scheint nicht möglich mit dem freien online-Account, da ich mir dort keine Admin-Rolle
+    zuweisen konnte. Ich habe mich dann für einen Trial-Account registriert und konnte ein developer Credential erzeugen.
+    <br />
+    Hierbei blieb jedoch ein Problem, dass ich nicht herausfinden konnte, wie ich die Verfallsdauer für das
+    Token anpassen könnte. Es hat aktuell eine Verfallsdauer von 2h - was es fast unsinnig macht,
+    dieses Paket zu deployen, da das Token 'hart' im Code steht.
+
+    <h3>Projektstruktur</h3>
+    Ich hätte die Startseite gerne schöner gestaltet.
+    <br />
+    Außderdem liegen aktuell die Scriptbefehle innerhalb der basic-map.html. Es wäre schöner diese
+    in eine eigene javascript-Datei auszulagern und in der html-Datei aufzurufen.
+
 </body>
 </html>
